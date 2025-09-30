@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turf Online Booking System</title>
+  <style>
+    :root {
+      --primary: #2b6cb0;
+      --secondary: #38a169;
+      --light: #f9f9f9;
+      --dark: #333;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: var(--light);
+      color: var(--dark);
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), #63b3ed);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .turfs {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .turf {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .turf:hover {
+      transform: translateY(-5px);
+    }
+    .turf img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .turf-content {
+      padding: 1rem;
+    }
+    .turf h2 {
+      margin: 0.2rem 0;
+      font-size: 1.2rem;
+    }
+    .turf p {
+      margin: 0.2rem 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .turf button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .turf button:hover {
+      background: #1a4f80;
+    }
+    aside {
+      flex: 1;
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      min-width: 280px;
+    }
+    form label {
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      margin-top: 0.3rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+    }
+    form button {
+      width: 100%;
+      background: var(--secondary);
+      color: white;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    form button:hover {
+      background: #27794f;
+    }
+    .booking-list {
+      max-height: 220px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .booking-item {
+      border-bottom: 1px solid #eee;
+      padding: 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .booking-item span {
+      display: block;
+    }
+    .cancel-btn {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      aside {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚽ Turf Online Booking System</h1>
+  </header>
+  <main>
+    <section class="turfs">
+      <div class="turf">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHGaf3tpBrRyzmm0xH6spaFAZhYt4Q3KSHb3Wy84U5BqI9RCRYfGmIHa349GS2AZZFw4Tz&s" alt="GreenField Sports Turf">
+        <div class="turf-content">
+          <h2>GreenField Sports Turf</h2>
+          <p>Sector 12, City</p>  
+          <p><strong>₹800 / hour</strong></p>
+          <button onclick="openBooking('GreenField Sports Turf')">Book</button>
+        </div>
+      </div>
+      <div class="turf">
+        <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Starlight Arena">
+        <div class="turf-content"> 
+          <h2>Starlight Arena</h2>
+          <p>Market Road</p>
+          <p><strong>₹1200 / hour</strong></p>
+          <button onclick="openBooking('Starlight Arena')">Book</button>
+        </div>
+      </div>
+      <div class="turf">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkJlPWHuL0jvt0Kes4HWV07N9QGia7GWSYsZLWNAdYW-mUnJGu6BNxAAZPEqn6_Y2nipsG&s" alt="Riverside Ground">
+        <div class="turf-content">
+          <h2>Riverside Ground</h2>
+          <p>Riverside Park</p>
+          <p><strong>₹600 / hour</strong></p>
+          <button onclick="openBooking('Riverside Ground')">Book</button>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <h2>📅 Book a Turf</h2>
+      <form id="bookingForm">
+        <label for="turf">Turf</label>
+        <input type="text" id="turf" name="turf" readonly />
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="slot">Time Slot</label>
+        <select id="slot" name="slot" required>
+          <option value="">--Select--</option>
+          <option>06:00 - 07:00</option>
+          <option>07:00 - 08:00</option>
+          <option>08:00 - 09:00</option>
+          <option>09:00 - 10:00</option>
+          <option>10:00 - 11:00</option>
+          <option>16:00 - 17:00</option>
+          <option>17:00 - 18:00</option>
+          <option>18:00 - 19:00</option>
+          <option>19:00 - 20:00</option>
+          <option>20:00 - 21:00</option>
+        </select>
+
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"></textarea>
+
+        <button type="submit">✅ Confirm Booking</button>
+      </form>
+
+      <h3 style="margin-top:1rem;">📋 Your Bookings</h3>
+      <div class="booking-list" id="bookingList"></div>
+    </aside>
+  </main>
+
+  <script>
+    const bookingForm = document.getElementById('bookingForm');
+    const bookingList = document.getElementById('bookingList');
+    let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+
+    function renderBookings() {
+      bookingList.innerHTML = '';
+      if (bookings.length === 0) {
+        bookingList.innerHTML = '<p>No bookings yet.</p>';
+      } else {
+        bookings.forEach((b, index) => {
+          const div = document.createElement('div');
+          div.className = 'booking-item';
+          div.innerHTML = `<span>${b.date} | ${b.slot} <br><strong>${b.turf}</strong> | ${b.name}</span>`;
+          const btn = document.createElement('button');
+          btn.className = 'cancel-btn';
+          btn.textContent = 'Cancel';
+          btn.onclick = () => cancelBooking(index);
+          div.appendChild(btn);
+          bookingList.appendChild(div);
+        });
+      }
+    }
+
+    function openBooking(turfName) {
+      document.getElementById('turf').value = turfName;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    bookingForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(bookingForm);
+      const booking = Object.fromEntries(formData.entries());
+      bookings.push(booking);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+      renderBookings();
+      alert(`Booking confirmed for ${booking.turf} on ${booking.date} (${booking.slot})`);
+      bookingForm.reset();
+    });
+
+    function cancelBooking(index) {
+      if (confirm('Cancel this booking?')) {
+        bookings.splice(index, 1);
+        localStorage.setItem('bookings', JSON.stringify(bookings));
+        renderBookings();
+      }
+    }
+
+    renderBookings();
+  </script>
+</body>
+</html>
